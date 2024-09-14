@@ -1,6 +1,6 @@
-package com.niuml.niu_study_spring_web_check.common;
+package com.niuml.common;
 
-import com.niuml.niu_study_spring_web_check.enums.BaseErrorInfoInterface;
+import com.niuml.enums.BaseErrorInfoInterface;
 import lombok.Data;
 
 /***
@@ -10,7 +10,7 @@ import lombok.Data;
  */
 
 @Data
-public class SelfException extends RuntimeException{
+public class CheckException extends RuntimeException{
     /**
      * 错误码
      */
@@ -20,13 +20,13 @@ public class SelfException extends RuntimeException{
      */
     protected String errorMsg;
 
-    public SelfException(BaseErrorInfoInterface errorInfoInterface) {
+    public CheckException(BaseErrorInfoInterface errorInfoInterface) {
         super(errorInfoInterface.getResultCode());
         this.errorCode = errorInfoInterface.getResultCode();
         this.errorMsg = errorInfoInterface.getResultMsg();
     }
 
-    public SelfException(String errorCode, String errorMsg) {
+    public CheckException(String errorCode, String errorMsg) {
         this.errorCode = errorCode;
         this.errorMsg = errorMsg;
     }

@@ -1,0 +1,35 @@
+server:
+  port: 8081
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/fffff?allowPublicKeyRetrieval=true&useUnicode=true&characterEncoding=utf8&useSSL=false&serverTimezone=Asia/Shanghai
+    username: root
+    password: 123456
+  elasticsearch:
+    # elasticsearch地址
+#    uris: 192.168.1.5:9200,192.168.1.16:9200
+    uris: localhost:9200
+#    username: elastic
+#    password: OLW43+utP0A+czcVAu+Q
+    connection-timeout: 30000
+    socket-timeout: 50000
+    socket-keep-alive: false
+    repositories:
+      enabled: true
+
+mybatis:
+  mapper-locations: classpath:mybatis/*.xml
+  type-aliases-package: com.niuml.mysql.entity
+  configuration:
+    map-underscore-to-camel-case: true
+logging:
+  level:
+    org:
+      springframework:
+        data:
+          elasticsearch:
+            core: DEBUG
+
+
+

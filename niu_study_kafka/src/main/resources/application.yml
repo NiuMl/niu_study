@@ -1,0 +1,11 @@
+server:
+  port: 8083
+spring:
+  kafka:
+    listener:
+      ack-mode: manual_immediate
+    consumer:
+      enable-auto-commit: false
+      group-id: test-consumer-group
+    bootstrap-servers: 127.0.0.1:9092
+

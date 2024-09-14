@@ -1,6 +1,6 @@
-package com.niuml.niu_study_spring_web_check.common;
+package com.niuml.common;
 
-import com.niuml.niu_study_spring_web_check.enums.BaseErrorInfoInterface;
+import com.niuml.enums.BaseErrorInfoInterface;
 import lombok.Data;
 
 /***

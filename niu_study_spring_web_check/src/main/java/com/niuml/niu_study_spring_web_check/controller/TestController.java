@@ -1,8 +1,9 @@
 package com.niuml.niu_study_spring_web_check.controller;
 
-import com.niuml.niu_study_spring_web_check.common.Res;
-import com.niuml.niu_study_spring_web_check.common.SelfException;
+import com.niuml.common.Res;
+import com.niuml.common.SelfException;
 import com.niuml.niu_study_spring_web_check.entity.TestEntity;
+import com.niuml.niu_study_spring_web_check.entity.TtEntity;
 import jakarta.validation.Valid;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -10,7 +11,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import static com.niuml.niu_study_spring_web_check.enums.ExceptionEnum.INTERNAL_SERVER_ERROR;
+import java.util.Map;
+
+import static com.niuml.enums.ExceptionEnum.INTERNAL_SERVER_ERROR;
+
 
 /***
  * @author niumengliang
@@ -36,6 +40,11 @@ public class TestController {
     @PostMapping("test3")
     public Res ttest3(@Valid @RequestBody TestEntity te){
         log.info("输入：{}",te);
+        return Res.ok("hello world");
+    }
+    @PostMapping("test4")
+    public Res ttest4( @RequestBody Map<String,String> te,@Valid TtEntity te2){
+        log.info("输入：{}，{}",te,te2);
         return Res.ok("hello world");
     }
 }

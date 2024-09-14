@@ -1,4 +1,4 @@
-package com.niuml.niu_study_spring_web_check.enums;
+package com.niuml.enums;
 
 /***
  * User:niumengliang
