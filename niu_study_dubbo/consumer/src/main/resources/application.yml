@@ -1,0 +1,21 @@
+dubbo:
+  application:
+    # ????
+    name: dubbo-consumer
+  protocol:
+    # ????
+    name: dubbo
+    # ????
+    port: 20880
+  registry:
+    # ??????
+    address: zookeeper://127.0.0.1:2181
+  consumer:
+    filter: ConsumerFilter
+
+server:
+  # ????????????
+  port: 8080
+
+#logging:
+#  config: classpath:logback-spring.xml
