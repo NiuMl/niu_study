@@ -1,0 +1,28 @@
+server:
+  port: 8081
+
+firewall:
+  gi: #全局拦截
+    enableIpWhiteList: false #开启ip白名单
+    ipWhiteList: 127.0.0.1,192.168.1.1 #ip白名单列表
+    enableIpBlackList: false #开启ip黑名单
+    ipBlackList: 192.168.1.14 #ip黑名单列表
+    enableUrlWhiteList: false #开启url白名单
+    urlWhiteList: /test/**,/test2/** #url白名单列表
+
+    enableGlobalInterception: false #  是否启用全局拦截 设置每秒最高并发
+    rate: 2.0 #  启用全局拦截后 每秒最高并发
+  vh: #验证请求头拦截
+    enableValidateHeadInterception: false #  是否启用验证请求头某值拦截
+    #  只有enableValidateHeadInterception为true时，才会用下面的
+    enableHeadEncryptionTimeCheck: false #  是否启用验证请求头时间戳跟本地时间差比较
+    headEncryptionTimeCheckDiffer: 100000 #  启用验证请求头时间戳跟本地时间差值 这是毫秒值 1000毫秒等于1秒，就是就是前端传过来的时间值跟服务器时间不能差1秒
+    validateHeadEncryptionStr: "" #  密钥  有值就用输入的值，没值就使用默认动态值 yyyy-MM-dd_dd-MM-yyyy
+    validateHeadEncryption: "" #  验证请求头的验证加密方式  为空时 使用aes
+  cache:
+    enableIpCacheInterception: false #  是否启用ip缓存拦截
+    enableIpCacheSynchronized: false #  是否启用ip缓存同步，之所以弄这个，是因为多并发的时候，ip计数会有延迟，加锁之后就可以了，但是会有一点点性能问题，不过不怎么影响，因为这是纯内存操作
+    ipCacheMaximumSize: 10 #  ip缓存最大数量
+    enableIpCacheExpireAfterAccess: 1 #  设置缓存项的过期时间  分钟  如果某个key在这个时间内没有补访问，就会删掉这个key
+    ipMaxRecord: 10 #  设置ip最大记录数  超过这个就不可以访问系统
+
