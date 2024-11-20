@@ -11,6 +11,9 @@ import java.util.List;
 
 import java.net.InetSocketAddress;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
+
 import com.alibaba.otter.canal.client.CanalConnectors;
 import com.alibaba.otter.canal.client.CanalConnector;
 import com.alibaba.otter.canal.protocol.Message;
@@ -36,7 +39,7 @@ public class TTTest {
     private final static int BATCH_SIZE = 1000;
     public static void main(String[] args) {
         // 创建链接
-        CanalConnector connector = CanalConnectors.newSingleConnector(new InetSocketAddress("192.168.1.2", 11111), "example", "", "");
+        CanalConnector connector = CanalConnectors.newSingleConnector(new InetSocketAddress("192.168.1.4", 11111), "example", "", "");
         try {
             //打开连接
             connector.connect();
@@ -105,9 +108,22 @@ public class TTTest {
                 //如果是删除语句
                 if (eventType == EventType.DELETE) {
                     printColumn(rowData.getBeforeColumnsList());
+                    rowData.getBeforeColumnsList().stream().filter(Column::getIsKey).findFirst().ifPresent(a->{
+                        System.out.println("delete from `"+entry.getHeader().getSchemaName()+"`.`"+
+                                entry.getHeader().getTableName()+"` where "+a.getName()+"="+a.getValue());
+                    });
                     //如果是新增语句
                 } else if (eventType == EventType.INSERT) {
                     printColumn(rowData.getAfterColumnsList());
+                    String key = rowData.getAfterColumnsList().stream().map(a-> "`"+a.getName()+"`").collect(Collectors.joining(","));
+                    String value = rowData.getAfterColumnsList().stream().map(a->{
+                        if(a.getMysqlType().equals("int")){
+                            return a.getValue();
+                        }else{
+                            return "'"+a.getValue()+"'";
+                        }
+                    }).collect(Collectors.joining(","));
+                    System.out.println("insert into `"+entry.getHeader().getSchemaName()+"`.`"+ entry.getHeader().getTableName()+"`("+key+") values("+value+")");
                     //如果是更新的语句
                 } else {
                     //变更前的数据
@@ -123,7 +139,8 @@ public class TTTest {
 
     private static void printColumn(List<Column> columns) {
         for (Column column : columns) {
-            System.out.println(column.getName() + " : " + column.getValue() + "    update=" + column.getUpdated());
+            System.out.println(column.getName() + " : " + column.getValue() +
+                    "    update=" + column.getUpdated()+"      column_type="+column.getMysqlType()+"  主键="+column.getIsKey());
         }
     }
 
