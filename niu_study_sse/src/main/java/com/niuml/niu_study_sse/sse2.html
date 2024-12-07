@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>
+      <!DOCTYPE html>
+      <html lang="en">
+      <head>
+      <meta charset="UTF-8">
+      <title>SSE Demo</title>
+  <script>        document.addEventListener('DOMContentLoaded', function () {
+    var userId = "2";
+
+    // 创建一个新的EventSource对象
+    var source = new EventSource('http://localhost:8080/sse/create-connect?userId=' + userId);
+
+    // 当连接打开时触发
+    source.onopen = function (event) {
+      console.log('SSE连接已打开');
+    };
+
+    // 当从服务器接收到消息时触发
+    source.onmessage = function (event) {
+      // event.data 包含服务器发送的文本数据
+      console.log('接收到消息:', event.data);
+      // 在页面上显示消息
+      var messagesDiv = document.getElementById('messages');
+      if (messagesDiv) {
+        messagesDiv.innerHTML += '<p>' + event.data + '</p>'; // 直接使用event.data
+      } else {
+        console.error('未找到消息容器元素');
+      }
+    };
+
+    // 当发生错误时触发
+    source.onerror = function (event) {
+      console.error('SSE连接错误:', event);
+    };
+  });
+  </script>
+</head>
+<body>
+<div id="messages">
+  <!-- 这里将显示接收到的消息 -->
+</div>
+</body>
+</html>
+</title>
+</head>
+<body>
+
+</body>
+</html>
