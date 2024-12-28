@@ -2,14 +2,11 @@ package com.niuml.niu_study_sb_mqtt;
 
 import jakarta.annotation.Resource;
 import lombok.extern.log4j.Log4j2;
-import org.eclipse.paho.client.mqttv3.MqttMessage;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-
-import java.nio.charset.StandardCharsets;
 
 /***
  * @author niumengliang
@@ -20,7 +17,7 @@ import java.nio.charset.StandardCharsets;
 @Controller
 public class TestController {
     @Resource
-    private MqttConsumerConfig client;
+    private MqttConsumer client;
 
     @Value("${mqtt.clientId}")
     private String clientId;

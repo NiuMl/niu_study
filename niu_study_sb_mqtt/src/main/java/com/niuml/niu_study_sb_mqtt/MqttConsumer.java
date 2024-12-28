@@ -4,9 +4,7 @@ import jakarta.annotation.PostConstruct;
 import jakarta.annotation.Resource;
 import lombok.extern.log4j.Log4j2;
 import org.eclipse.paho.client.mqttv3.*;
-import org.eclipse.paho.client.mqttv3.persist.MemoryPersistence;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 /***
@@ -16,7 +14,7 @@ import org.springframework.context.annotation.Configuration;
  */
 @Log4j2
 @Configuration
-public class MqttConsumerConfig {
+public class MqttConsumer {
 
     @Value("${mqtt.username}")
     private String username;
