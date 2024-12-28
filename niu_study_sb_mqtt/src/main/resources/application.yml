@@ -1,0 +1,9 @@
+server:
+  port: 8080
+mqtt:
+  username: niuniu
+  password: niuniu
+  hostUrl: tcp://www.wlcx.com.cn:1883
+  clientId: mqtt_client
+  topic: wlcx/equ, wlcx/equ2
+  qos: 1,1

@@ -60,7 +60,6 @@ public class LoginSuccessHandler extends
         Collection<? extends GrantedAuthority> authorities = authentication.getAuthorities();
         List<String> authorityList = authorities.stream().map(String::valueOf).toList();
         currentUser.setAuthorities(authorityList);
-        currentUser.setInterfaces(currentUser.getInterfaces());
 
         // 生成token和refreshToken
         Map<String, Object> responseData = new LinkedHashMap<>();

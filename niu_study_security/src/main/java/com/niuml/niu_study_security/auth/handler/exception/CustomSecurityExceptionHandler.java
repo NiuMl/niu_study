@@ -11,6 +11,7 @@ import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import lombok.extern.log4j.Log4j2;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
@@ -25,10 +26,9 @@ import java.io.PrintWriter;
 /**
  * 捕捉Spring security filter chain 中抛出的未知异常
  */
+@Log4j2
 public class CustomSecurityExceptionHandler extends OncePerRequestFilter {
 
-    public static final Logger logger = LoggerFactory.getLogger(
-            CustomSecurityExceptionHandler.class);
 
 
     private void sendMsg(String result,HttpServletResponse response){
