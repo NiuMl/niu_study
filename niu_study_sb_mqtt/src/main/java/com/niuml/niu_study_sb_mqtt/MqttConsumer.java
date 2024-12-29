@@ -16,12 +16,6 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class MqttConsumer {
 
-    @Value("${mqtt.username}")
-    private String username;
-    @Value("${mqtt.password}")
-    private String password;
-    @Value("${mqtt.hostUrl}")
-    private String hostUrl;
     @Value("${mqtt.clientId}")
     private String clientId;
     @Value("${mqtt.topic}")
@@ -56,8 +50,6 @@ public class MqttConsumer {
     public void connect() {
         log.info("开始创建创建MQTT客户端对象，客户端连接到服务器");
         try {
-            //创建MQTT客户端对象
-//            client = new MqttClient(hostUrl, clientId, new MemoryPersistence());
             //连接设置
             //设置遗嘱消息的话题，若客户端和服务器之间的连接意外断开，服务器将发布客户端的遗嘱信息
             options.setWill("willTopic", (clientId + "与服务器断开连接").getBytes(), 0, false);
