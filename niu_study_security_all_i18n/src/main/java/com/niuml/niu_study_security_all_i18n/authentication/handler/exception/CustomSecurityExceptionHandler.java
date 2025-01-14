@@ -2,10 +2,10 @@ package com.niuml.niu_study_security_all_i18n.authentication.handler.exception;
 
 import com.auth0.jwt.exceptions.JWTDecodeException;
 import com.auth0.jwt.exceptions.TokenExpiredException;
-import com.ef.easy_framework.common.exceptions.BaseException;
-import com.ef.easy_framework.common.model.Result;
-import com.ef.easy_framework.common.model.ResultBuilder;
-import com.ef.easy_framework.utils.ResponseUtil;
+import com.niuml.niu_study_security_all_i18n.common.exceptions.BaseException;
+import com.niuml.niu_study_security_all_i18n.common.model.Result;
+import com.niuml.niu_study_security_all_i18n.common.model.ResultBuilder;
+import com.niuml.niu_study_security_all_i18n.utils.ResponseUtil;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -18,7 +18,7 @@ import org.springframework.web.filter.OncePerRequestFilter;
 
 import java.io.IOException;
 
-import static com.ef.easy_framework.common.codes.ExceptionCode.*;
+import static com.niuml.niu_study_security_all_i18n.common.codes.ExceptionCode.*;
 
 /**
  * 捕捉Spring security filter chain 中抛出的未知异常
