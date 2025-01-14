@@ -24,7 +24,7 @@ public class SSEController {
     public SseEmitter createConnect(@RequestParam("userId") String userId) {
         try {
             // 设置超时时间，0表示不过期。默认30秒
-            SseEmitter sseEmitter = new SseEmitter(0L);
+            SseEmitter sseEmitter = new SseEmitter(5000L);
             // 注册回调
             sseEmitter.onCompletion(() -> removeSseConnection(userId, "SSE连接已关闭"));
             sseEmitter.onError(throwable -> removeSseConnection(userId, "SSE连接出现错误"));

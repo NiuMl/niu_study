@@ -79,7 +79,7 @@ public class MqttConsumerCallBack implements MqttCallbackExtended {
      */
     @Override
     public void deliveryComplete(IMqttDeliveryToken iMqttDeliveryToken) {
-        log.info("消息发布成功:{}", iMqttDeliveryToken.isComplete());
+        log.info("消息发布成功?:{}", iMqttDeliveryToken.isComplete());
 
     }
 
